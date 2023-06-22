@@ -1,0 +1,20 @@
+---- Análisis y Diseño ----
+
+-- Ejercicio 1 --
+
+1.
+
+1.1. Habría que crear atributos con arrays conteniendo esa información.
+
+1.2. Habría que crear también clases asociadas a Supermercado (Cliente, Proveedor, Empleados...).
+
+2.
+
+2.1. Habría que agregar métodos a la clase Supermarket.
+
+2.2. Habría que agregar nuevos métodos a las clases asociadas.
+
+-- Ejercicio 2 --
+
+1. Revisar .png en la carpeta etc.
+

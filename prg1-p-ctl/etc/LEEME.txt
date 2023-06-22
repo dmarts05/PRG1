@@ -1,0 +1,32 @@
+Practica P-CTL
+
+Alumno: Daniel Martínez Sánchez
+
+Horas dedicadas: 5h
+
+Problemas surgidos al realizar la practica: Cierta complejidad para elaborar la clase Ecuacion2Grado
+
+Respuestas a la preguntas:
+
+---- Apartado 030101 - Ejercicio 04 ----
+
+Se imprime el Resultado 2 porque tanto las condiciones del primer como el tercer if tienen como valor booleano "false".
+Las sentencias if ejecutan el código únicamente cuando las condiciones tienen un valor booleano "true".
+
+---- Apartado 030101 - Ejercicio 09 ----
+
+Se ejecuta el código del segundo if porque n1 y n2 son onjetos distintos, a pesar de compartir el mismo valor del número entero.
+Si comentamos el método toString de la clase NumeroEntero, podremos observar como son realmente distintos.
+
+---- Apartado 030101 - Ejercicio 10 ----
+
+En la primera ejecución ocurre un caso similar al del ejercicio anterior. n1 y aux sí son iguales ya que es una copia
+exacta del objeto. 
+
+En la segunda ejecución, con el nuevo método equals(), n1 = n2 = aux. Esto ocurre porque se han comparado sus valores y no
+si son los mismos objetos.
+
+---- Apartado 030102 - Ejercicio 03 ----
+
+La primera ejecución no arroja resultados porque no se pueden comparar los objetos en sí mismos, se deben comparar sus variables asociadas.
+Tras la inclusión del método compareTo() en la clase NumeroEntero, el programa ya funciona correctamente, comparando los valores de los objetos.

@@ -1,0 +1,12 @@
+classes
+doc
+log
+coverage_report
+.classpath
+.git
+.project
+/bin/
+.idea
+ulecalendar-2021-4d.iml
+out
+/log/output.log

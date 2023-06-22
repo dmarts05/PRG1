@@ -1,0 +1,53 @@
+Practica P-VAR
+
+Alumno: Daniel Martínez Sánchez
+
+Horas dedicadas: 3h
+
+Problemas surgidos al realizar la practica: Confusión con los casteos y alguna compilación fallida.
+
+Respuestas a la preguntas:
+
+--- Apartado 030101 - Ejercicio 04 ---
+
+El resultado de restar esas dos variables double no es 1.3 debido a que al realizar operaciones con variables
+de coma floatante, se pierde precisión, provocando que como resultado salga 1.2999999.
+
+--- Apartado 030101 - Ejercicio 05 ---
+
+Al hacer uso de objetos de la clase BigDecimal, las operaciones no pierden precisión como en el caso de las
+variables double, dando como resultado 1.3.
+
+--- Apartado 030104 - Ejercicio 04 ---
+
+Gigante: Infinity -> Al cambiar de tipo double a float, el número es demasiado grande para el rango de valores
+de float y por eso se muestra Infinity.
+
+Normal: 35.987656 -> Las variables tipo double tienen el doble de precisión que las de tipo float, por eso, al
+hacer la conversión, se muestra un número recortado. Las variables tipo float tienen 7 decimales de precisión. 
+
+Minimo: 0.0 -> Al cambiar de tipo double a float, el número es demasiado pequeño para el rango de valores de
+float y por eso se muestra 0.0.
+
+Byte: -126 -> Al sobrepasar el límite del rango de valores de byte [-128, 127], el número pasa directamente
+al extremo de los números negativos, arrojando como resultado -126.
+
+Short: -32766 -> Es un caso similar al anterior, solo que el rango de valores de short es [–32768, 32767]. El
+número pasa directamente al extremo de los números negativos, dando como resultado -32766.
+
+Int: -2147483646 -> Ocurre una vez más lo mismo, con el matiz de que el rango de int es mayor. El número
+pasa directamente al extremo de los números negativos, siendo el valor -2147483646.
+
+f: 1.3E22 -> El resultado es el esperado, ya que no se ha sometido a ningún cambio de tipo de variable. Solo cabe
+matizar que la "f" que indica que es una variable de tipo float desaparece al imprimir el número.
+
+--- Apartado 030202 - Ejercicio 01 ---
+
+El método lenght() nos devuelve el número de caracteres que se encuentran almacenados en el StringBuffer, mientras que el método capacity()
+devuelve la cantidad de caracteres que puede albergar dicho StreamBuffer.
+
+--- Apartado 030203 - Ejercicio 01 ---
+
+1. Al no haber un método toString() indicado por el programador, se imprime el identificador en memoria del objeto.
+2. Al haber definido el método toString(), se imprime aquello que le hemos indicado, en este caso una cadena con el NIU,
+el Nombre y la Nota del alumno.

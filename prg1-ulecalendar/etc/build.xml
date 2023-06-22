@@ -1,0 +1,108 @@
+<project xmlns:jacoco="antlib:org.jacoco.ant" name="ULE Calendar APP" basedir=".." default="todo">
+
+  <property name="src.dir" value="./src"/>
+  <property name="classes.dir" value="./classes"/>
+  <property name="lib" value="./lib/junit-4.8.2.jar:./lib/log4j-api-2.5.jar:./lib/log4j-core-2.5.jar"/>
+  <property name="conf.dir" value="./etc"/>
+  <property name="log.dir" value="./log"/>
+  <property name="test.dir" value="./test"/>
+  <property name="doc.dir" value="./doc"/>
+  <property name="paquetes" value="es.unileon.prg1"/>
+  
+  <property name="coverage.result.dir" location="./coverage_report"/>
+  <property name="coverage.result.report.dir" location="${coverage.result.dir}/site/jacoco"/>
+  <property name="coverage.result.exec.file" location="${coverage.result.dir}/jacoco.exec"/>
+
+  <target name="clean">
+    <delete dir="${classes.dir}"/>
+    <delete dir="${coverage.result.dir}"/>
+    <delete dir="${doc.dir}"/>
+  </target>
+
+  <target name="doc">
+      <mkdir dir="${doc.dir}"/>
+      <javadoc sourcepath="${src.dir}" classpath="${lib}"
+         packagenames="${paquetes}.*"
+         destdir="${doc.dir}"
+         verbose="true" author="true" encoding="UTF-8"
+         access="private" splitindex="true" version="true"
+         windowtitle="UleCalendar" doctitle="UleCalendar"/>
+    </target>
+
+  <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+    <classpath path="./lib/jacocoant.jar"/>
+  </taskdef>
+
+  <target name="compile" depends="clean">
+    <mkdir dir="${classes.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpath="${lib}" includeantruntime="false" encoding="UTF-8" fork="true" debug="true"/>
+    <echo message="Compilation...done"/>
+  </target>
+
+  <target name="compileTests" depends="compile">
+    <mkdir dir="${classes.dir}"/>
+    <javac srcdir="${test.dir}" destdir="${classes.dir}" classpath="${lib}" includeantruntime="false" encoding="UTF-8" fork="true" debug="true"/>
+    <echo message="Test compilation...done"/>
+  </target>
+
+  <target name="test" depends="compileTests, doc">
+    <mkdir dir="${log.dir}"/>
+    <jacoco:coverage destfile="${coverage.result.exec.file}">
+      <junit showoutput="true" printsummary="yes" haltonfailure="no" enabletestlistenerevents="true" fork="true">
+        <classpath>
+          <pathelement path="${classes.dir}"/>
+          <pathelement path="${conf.dir}"/>
+          <pathelement path="${lib}"/>
+        </classpath>
+        <batchtest todir="${coverage.result.dir}">
+          <fileset dir="${classes.dir}">
+            <exclude name="**/*$*.class"/>
+            <exclude name="**/ui/*.class"/>
+            <include name="**/*Test*.class"/>
+          </fileset>
+        </batchtest>
+        <test name="${paquetes}.AllTests" haltonfailure="no" outfile="TEST-result" todir="${log.dir}">
+          <formatter type="xml"/>
+        </test>
+      </junit>
+    </jacoco:coverage>
+  </target>
+
+  <target name="report" depends="test">
+    <jacoco:report>
+      <executiondata>
+        <file file="${coverage.result.exec.file}"/>
+      </executiondata>
+      <structure name="Coverage with Jacoco">
+        <classfiles>
+          <fileset dir="${classes.dir}">
+            <exclude name="**/*Test*.class"/>
+            <exclude name="**/ui/*.class"/>
+            <exclude name="**/prg1/*.class"/>
+          </fileset>
+        </classfiles>
+        <sourcefiles encoding="UTF-8">
+          <fileset dir="${src.dir}"/>
+        </sourcefiles>
+      </structure>
+      <html destdir="${coverage.result.report.dir}"/>
+      <csv destfile="${coverage.result.report.dir}/report.csv"/>
+      <xml destfile="${coverage.result.report.dir}/report.xml"/>
+    </jacoco:report>
+    <echo message="Generating coverage report with jacoco...done"/>
+  </target>
+
+  <target name="run">
+    <java fork="yes" classname="${paquetes}.UleCalendar">
+      <classpath>
+        <pathelement path="${classes.dir}"/>
+        <pathelement path="${lib}"/>
+        <pathelement path="."/>
+        <pathelement path="${conf.dir}"/>
+      </classpath>
+      <arg value="./etc/calendar.txt"/>
+    </java>
+  </target>
+
+  <target name="todo" depends="report, run"/>
+</project>

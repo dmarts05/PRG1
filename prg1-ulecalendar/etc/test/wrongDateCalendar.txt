@@ -1,0 +1,8 @@
+USER alea Alex Archer
+USER bonb Bonnie Bird
+USER colc Colin Cook
+EVENT alea Class ULE 11112011 9:00 13:00
+EVENT alea Meeting MIC 1111/2011 13:00 14:00
+EVENT alea Lunch Cafeteria 11/112011 14:00 15:00
+EVENT bonb Class ULE 31/11/2011 15:00 19:00
+EVENT bonb Meeting Library 11/15/2011 13:00 14:00
